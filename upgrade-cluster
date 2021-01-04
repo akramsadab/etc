@@ -1,0 +1,20 @@
+copy ~/.kube/config  to  /etc/kubernetes/admin.conf
+cp ~/.kube/config /etc/kubernetes/admin.conf
+
+upgrade master
+==============
+kubectl drain master --ignore-daemonsets
+apt update
+apt install kubeadm=1.19.0-00
+kubeadm upgrade apply v1.19.0
+apt install kubelet=1.19.0-00
+kubectl uncordon master
+
+upgrade worker
+==============
+master$ ssh node01
+node01$ apt update
+node01$ apt install kubeadm=1.19.0-00
+node01$ apt install kubelet=1.19.0-00
+node01$ kubeadm upgrade node 
+master$ kubectl uncordon node01

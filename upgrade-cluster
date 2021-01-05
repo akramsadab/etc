@@ -1,5 +1,6 @@
 copy ~/.kube/config  to  /etc/kubernetes/admin.conf
 cp ~/.kube/config /etc/kubernetes/admin.conf
+kubectl config view
 
 upgrade master
 ==============
